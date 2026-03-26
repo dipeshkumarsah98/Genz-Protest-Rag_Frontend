@@ -33,13 +33,13 @@ export function SuggestedQuestions({ messages, onSendMessage }: SuggestedQuestio
                 <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
                     Suggested questions
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex gap-2 scrollbar-thin overflow-x-auto scrollbar-hide pb-1">
                     {SUGGESTED_QUESTIONS.map((question) => (
                         <button
                             key={question}
                             type="button"
                             onClick={() => onSendMessage(question)}
-                            className="rounded-full border border-border bg-muted px-3 py-1 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
+                            className="flex-shrink-0 rounded-full border border-border bg-muted px-3 py-1 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer whitespace-nowrap"
                         >
                             {question}
                         </button>

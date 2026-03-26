@@ -117,7 +117,8 @@ export function MessageInput({
         </button>
       </form>
 
-      <p className="mt-2 text-center text-[14px] text-muted-foreground mx-auto max-w-3xl">
+      {/* Hide instructional text on mobile, show on desktop */}
+      <p className="mt-4 text-center text-[14px] text-muted-foreground mx-auto max-w-3xl hidden sm:mt-2 sm:block">
         Answers are sourced from a 900-page government report on the 2025 Gen-Z
         protests in Nepal. Press{' '}
         <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">
