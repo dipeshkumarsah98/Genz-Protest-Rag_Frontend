@@ -17,8 +17,8 @@ const STATS = [
 // Example questions
 // ---------------------------------------------------------------------------
 const EXAMPLE_QUESTIONS = [
-  'When did the Gen-Z protest happen?',
-  'Why did the protest escalate?',
+  'When did the Gen-Z Aandolan happen?',
+  'Why did the Aandolan escalate?',
   'Who was held accountable?',
   'What were the key demands?',
 ] as const
@@ -78,7 +78,7 @@ export function HeroSection() {
 
         {/* Sub-headline */}
         <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
-          A 900-page official report on Nepal&apos;s 2025 Gen-Z protests sits
+          A 900-page official report on Nepal&apos;s 2025 Gen-Z Aandolan sits
           behind this interface. Ask anything. Get precise answers drawn
           directly from the primary source.
         </p>

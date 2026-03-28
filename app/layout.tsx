@@ -17,12 +17,12 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'AandolanBot — Nepal Gen-Z Protests Document Explorer',
+  title: 'AandolanBot — Nepal Gen-Z Aandolan Document Explorer',
   description:
-    'Cross-question a 900-page government document about the 2025 Gen-Z protests in Nepal. Ask anything — get precise, sourced answers drawn directly from official documentation.',
+    'Cross-question a 900-page government document about the 2025 Gen-Z Aandolan in Nepal. Ask anything — get precise, sourced answers drawn directly from official documentation.',
   keywords: [
     'Nepal',
-    'Gen-Z protests',
+    'Gen-Z Aandolan',
     '2025',
     'government document',
     'Aandolan',
@@ -31,17 +31,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'AandolanBot' }],
   openGraph: {
-    title: 'AandolanBot — Nepal Gen-Z Protests Document Explorer',
+    title: 'AandolanBot — Nepal Gen-Z Aandolan Document Explorer',
     description:
-      'Cross-question a 900-page government document about the 2025 Gen-Z protests in Nepal.',
+      'Cross-question a 900-page government document about the 2025 Gen-Z Aandolan in Nepal.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AandolanBot — Nepal Gen-Z Protests Document Explorer',
+    title: 'AandolanBot — Nepal Gen-Z Aandolan Document Explorer',
     description:
-      'Cross-question a 900-page government document about the 2025 Gen-Z protests in Nepal.',
+      'Cross-question a 900-page government document about the 2025 Gen-Z Aandolan in Nepal.',
   },
 }
 

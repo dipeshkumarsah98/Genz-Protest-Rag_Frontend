@@ -6,7 +6,7 @@ import { AnalyticsTracker } from '@/components/analytics-tracker'
 export const metadata: Metadata = {
   title: 'Ask a Question — AandolanBot',
   description:
-    'Cross-question the official 900-page government document about Nepal\'s 2025 Gen-Z protests.',
+    'Cross-question the official 900-page government document about Nepal\'s 2025 Gen-Z Aandolan.',
 }
 
 export default function ChatPage() {

@@ -67,7 +67,7 @@ export function MessageInput({
         aria-label="Message input form"
       >
         <label className="sr-only" htmlFor="chat-input">
-          Ask a question about the Nepal Gen-Z protests
+          Ask a question about the Nepal Gen-Z Aadolan
         </label>
 
         {/* Textarea */}
@@ -81,7 +81,7 @@ export function MessageInput({
             adjustHeight()
           }}
           onKeyDown={handleKeyDown}
-          placeholder="Ask about the 2025 Nepal Gen-Z protests..."
+          placeholder="Ask about the 2025 Nepal Gen-Z Aandolan..."
           disabled={isLoading || disabled}
           aria-disabled={isLoading || disabled}
           aria-label="Your question"
@@ -120,7 +120,7 @@ export function MessageInput({
       {/* Hide instructional text on mobile, show on desktop */}
       <p className="mt-4 text-center text-[14px] text-muted-foreground mx-auto max-w-3xl hidden sm:mt-2 sm:block">
         Answers are sourced from a 900-page government report on the 2025 Gen-Z
-        protests in Nepal. Press{' '}
+        Aandolans in Nepal. Press{' '}
         <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[10px]">
           Enter
         </kbd>{' '}

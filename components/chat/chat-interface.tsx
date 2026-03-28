@@ -12,49 +12,6 @@ import { sendQuestionMock } from '@/lib/mock-api'
 import { generateId } from '@/lib/id'
 import { loadMessages, saveMessages, clearMessages } from '@/lib/storage'
 import type { Message } from '@/types/chat'
-
-const SEED_MESSAGES: Message[] = [
-  {
-    id: generateId(),
-    role: 'user',
-    content: 'When did the Gen-Z protest happen in Nepal?',
-    timestamp: new Date('2026-03-26T22:06:38.902Z'),
-  },
-  {
-    id: generateId(),
-    role: 'assistant',
-    content:
-      'The Gen-Z protest in Nepal happened on **Bhadra 23, 2082**.\n\n- This movement started peacefully but later escalated into violence as demonstrators reached the Everest Hotel in Baneshwar.',
-    timestamp: new Date('2026-03-26T22:06:38.903Z'),
-  },
-  {
-    id: generateId(),
-    role: 'user',
-    content: 'Why did the Gen-Z protest happen?',
-    timestamp: new Date('2026-03-26T22:07:13.145Z'),
-  },
-  {
-    id: generateId(),
-    role: 'assistant',
-    content:
-      'The Gen-Z protest happened in response to:\n\n- Systemic injustice\n- Violence\n- Corruption\n- Misuse of power affecting the youth\n- Unemployment\n- Rising economic inequality\n- Lack of opportunities\n\nProtesters demanded accountability from the government and transparency in governance.',
-    timestamp: new Date('2026-03-26T22:07:13.145Z'),
-  },
-  {
-    id: generateId(),
-    role: 'user',
-    content: 'Who should be punished for this protest?',
-    timestamp: new Date('2026-03-26T22:07:45.395Z'),
-  },
-  {
-    id: generateId(),
-    role: 'assistant',
-    content:
-      'The following individuals should be held accountable for the protests:\n\n- The then **Prime Minister**\n- The then **Home Minister**\n- Other officials involved in the violent acts such as vandalism and arson on September 24, 2082\n- Peaceful protesters who engaged in violence should face legal action as per the law.',
-    timestamp: new Date('2026-03-26T22:07:45.395Z'),
-  },
-]
-
 const isApiConfigured =
   typeof process.env.NEXT_PUBLIC_API_URL === 'string' &&
   process.env.NEXT_PUBLIC_API_URL.trim() !== ''
@@ -191,7 +148,7 @@ export function ChatInterface() {
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-3">
           <div className="min-w-0">
             <h1 className="truncate text-base font-semibold text-foreground">
-              Nepal Gen-Z Protests Document
+              Nepal Gen-Z Aandolan Document
             </h1>
             <p className="truncate text-sm text-muted-foreground">
               900-page official government report &mdash; 2025

@@ -33,7 +33,7 @@ export function MessageList({ messages, isLoading, onSendMessage, onRetry }: Mes
               Start by asking a question
             </p>
             <p className="text-base text-muted-foreground max-w-xs leading-relaxed">
-              You can ask anything about the 2025 Gen-Z protests in Nepal —
+              You can ask anything about the 2025 Gen-Z Aandolan in Nepal —
               events, timelines, demands, government responses, and more.
             </p>
           </div>
@@ -76,9 +76,9 @@ export function MessageList({ messages, isLoading, onSendMessage, onRetry }: Mes
 }
 
 const EXAMPLE_QUESTIONS: string[] = [
-  'When did the Gen-Z protest happen in Nepal?',
-  'Why did the Gen-Z protest happen?',
-  'Who should be punished for this protest?',
-  'What were the main demands of protesters?',
+  'When did the Gen-Z Aandolan happen in Nepal?',
+  'Why did the Aandolan escalate?',
+  'Who should be punished for this Aandolan?',
+  'What were the main demands of Aandolan?',
   'How did the government respond?',
 ]
