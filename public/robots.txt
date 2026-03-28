@@ -1,0 +1,32 @@
+# Robots.txt for AandolanBot - Generated Chat Interface
+
+# Allow all web crawlers to access all content
+User-agent: *
+Allow: /
+
+# Block access to Next.js build files and internal directories
+Disallow: /_next/
+Disallow: /api/
+Disallow: /.well-known/
+
+# Sitemap location
+Sitemap: https://aandolanbot.vercel.app/sitemap.xml
+
+# Common crawl delays (optional)
+# Crawl-delay: 1
+
+# Additional directives for major search engines
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Geist_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react';
+import { GoogleAnalytics } from "@next/third-parties/google";
 import './globals.css'
 
 const inter = Inter({
@@ -59,6 +61,10 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
         {children}
+        <Analytics />
+        <GoogleAnalytics
+          gaId='G-6WMWQ430JX'
+        />
       </body>
     </html>
   )
