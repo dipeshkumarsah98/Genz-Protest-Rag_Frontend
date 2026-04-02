@@ -89,3 +89,34 @@ export async function sendQuestionMock(question: string): Promise<ApiResponse> {
 
   return { markdown: match ? match.markdown : FALLBACK_MARKDOWN };
 }
+
+/**
+ * Mock streaming variant that yields characters with a small delay
+ * to simulate the SSE streaming experience during development.
+ */
+export async function* sendQuestionStreamMock(
+  question: string,
+): AsyncGenerator<string, void, unknown> {
+  // Simulate initial latency
+  await new Promise((resolve) =>
+    setTimeout(resolve, 300 + Math.random() * 400),
+  );
+
+  const lower = question.toLowerCase();
+  const match = MOCK_RESPONSES.find(({ keywords }) =>
+    keywords.some((kw) => lower.includes(kw)),
+  );
+  const fullText = match ? match.markdown : FALLBACK_MARKDOWN;
+
+  // Yield chunks of ~2-5 characters at a time
+  let i = 0;
+  while (i < fullText.length) {
+    const chunkSize = 2 + Math.floor(Math.random() * 4);
+    const chunk = fullText.slice(i, i + chunkSize);
+    yield chunk;
+    i += chunkSize;
+    await new Promise((resolve) =>
+      setTimeout(resolve, 15 + Math.random() * 25),
+    );
+  }
+}

@@ -7,8 +7,8 @@ import { MessageInput } from '@/components/chat/message-input'
 import { SuggestedQuestions } from '@/components/chat/suggested-questions'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { sendQuestion, ChatApiError } from '@/lib/api'
-import { sendQuestionMock } from '@/lib/mock-api'
+import { sendQuestionStream, ChatApiError } from '@/lib/api'
+import { sendQuestionStreamMock } from '@/lib/mock-api'
 import { generateId } from '@/lib/id'
 import { loadMessages, saveMessages, clearMessages } from '@/lib/storage'
 import type { Message } from '@/types/chat'
@@ -64,35 +64,47 @@ export function ChatInterface() {
     setMessages((prev) => prev.filter(m => m.id !== errorMessageId))
     setIsLoading(true)
 
+    const assistantId = generateId()
+    const assistantMessage: Message = {
+      id: assistantId,
+      role: 'assistant',
+      content: '',
+      timestamp: new Date(),
+      isStreaming: true,
+    }
+    setMessages((prev) => [...prev, assistantMessage])
+
     try {
-      const { answer: markdown } = isApiConfigured
-        ? await sendQuestion(userMessage.content)
-        : await sendQuestionMock(userMessage.content)
+      const stream = isApiConfigured
+        ? sendQuestionStream(userMessage.content)
+        : sendQuestionStreamMock(userMessage.content)
 
-      const assistantMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: markdown,
-        timestamp: new Date(),
+      for await (const chunk of stream) {
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId ? { ...m, content: m.content + chunk } : m
+          )
+        )
       }
-
-      setMessages((prev) => [...prev, assistantMessage])
     } catch (err) {
       const errorText =
         err instanceof ChatApiError
           ? err.message
           : 'Something went wrong. Please try again.'
 
-      const newErrorMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: errorText,
-        timestamp: new Date(),
-        isError: true,
-      }
-
-      setMessages((prev) => [...prev, newErrorMessage])
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, content: errorText, isError: true, isStreaming: false }
+            : m
+        )
+      )
     } finally {
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId ? { ...m, isStreaming: false } : m
+        )
+      )
       setIsLoading(false)
     }
   }, [messages, isApiConfigured])
@@ -109,35 +121,47 @@ export function ChatInterface() {
     setInputValue('')
     setIsLoading(true)
 
+    const assistantId = generateId()
+    const assistantMessage: Message = {
+      id: assistantId,
+      role: 'assistant',
+      content: '',
+      timestamp: new Date(),
+      isStreaming: true,
+    }
+    setMessages((prev) => [...prev, assistantMessage])
+
     try {
-      const { answer: markdown } = isApiConfigured
-        ? await sendQuestion(question)
-        : await sendQuestionMock(question)
+      const stream = isApiConfigured
+        ? sendQuestionStream(question)
+        : sendQuestionStreamMock(question)
 
-      const assistantMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: markdown,
-        timestamp: new Date(),
+      for await (const chunk of stream) {
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId ? { ...m, content: m.content + chunk } : m
+          )
+        )
       }
-
-      setMessages((prev) => [...prev, assistantMessage])
     } catch (err) {
       const errorText =
         err instanceof ChatApiError
           ? err.message
           : 'Something went wrong. Please try again.'
 
-      const errorMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: errorText,
-        timestamp: new Date(),
-        isError: true,
-      }
-
-      setMessages((prev) => [...prev, errorMessage])
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, content: errorText, isError: true, isStreaming: false }
+            : m
+        )
+      )
     } finally {
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId ? { ...m, isStreaming: false } : m
+        )
+      )
       setIsLoading(false)
     }
   }, [])

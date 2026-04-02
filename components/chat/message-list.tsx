@@ -67,7 +67,7 @@ export function MessageList({ messages, isLoading, onSendMessage, onRetry }: Mes
           <MessageBubble key={message.id} message={message} onRetry={onRetry} />
         ))}
 
-        {isLoading && <TypingIndicator />}
+        {isLoading && !messages.some(m => m.isStreaming) && <TypingIndicator />}
 
         <div ref={bottomRef} aria-hidden="true" />
       </div>
