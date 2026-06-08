@@ -13,6 +13,7 @@ interface MessageBubbleProps {
 export function MessageBubble({ message, onRetry }: MessageBubbleProps) {
   const isUser = message.role === 'user'
   const isError = message.isError === true
+  const isStreaming = message.isStreaming === true
 
   return (
     <div
@@ -81,22 +82,46 @@ export function MessageBubble({ message, onRetry }: MessageBubbleProps) {
             )}
           </div>
         ) : (
-          <MarkdownRenderer content={message.content} />
+          <div>
+            {message.content ? (
+              <MarkdownRenderer content={message.content} />
+            ) : isStreaming ? (
+              <div className="flex items-center gap-1.5 py-1" aria-hidden="true">
+                <span
+                  className="h-2 w-2 rounded-full bg-muted-foreground/60 animate-bounce"
+                  style={{ animationDelay: '0ms', animationDuration: '900ms' }}
+                />
+                <span
+                  className="h-2 w-2 rounded-full bg-muted-foreground/60 animate-bounce"
+                  style={{ animationDelay: '180ms', animationDuration: '900ms' }}
+                />
+                <span
+                  className="h-2 w-2 rounded-full bg-muted-foreground/60 animate-bounce"
+                  style={{ animationDelay: '360ms', animationDuration: '900ms' }}
+                />
+              </div>
+            ) : null}
+            {isStreaming && message.content && (
+              <span className="inline-block w-0.5 h-[1em] bg-foreground animate-pulse align-middle ml-0.5" />
+            )}
+          </div>
         )}
 
-        {/* Timestamp */}
-        <time
-          dateTime={message.timestamp.toISOString()}
-          className={cn(
-            'mt-2 block text-[12px] select-none',
-            isUser
-              ? 'text-primary-foreground/60 text-right'
-              : 'text-muted-foreground'
-          )}
-          title={message.timestamp.toLocaleString()}
-        >
-          {formatRelativeTime(message.timestamp)}
-        </time>
+        {/* Timestamp — hide while streaming */}
+        {!isStreaming && (
+          <time
+            dateTime={message.timestamp.toISOString()}
+            className={cn(
+              'mt-2 block text-[12px] select-none',
+              isUser
+                ? 'text-primary-foreground/60 text-right'
+                : 'text-muted-foreground'
+            )}
+            title={message.timestamp.toLocaleString()}
+          >
+            {formatRelativeTime(message.timestamp)}
+          </time>
+        )}
       </div>
     </div>
   )

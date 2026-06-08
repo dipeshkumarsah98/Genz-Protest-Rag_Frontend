@@ -6,6 +6,7 @@ export interface Message {
   content: string;
   timestamp: Date;
   isError?: boolean;
+  isStreaming?: boolean;
 }
 
 export interface ApiResponse {
